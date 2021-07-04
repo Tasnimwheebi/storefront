@@ -11,23 +11,26 @@ const initialState = {
             description:'rice'
         },
     ],
-    activeCategory:'electronics'
+    active:'electronics'
 }
-export default (state = initialState, action) => {
+ const categoryReducer=  (state = initialState, action) => {
     let { type, payload } = action;
     switch (type) {
         case 'change':
-          let activeCategory = payload.name;
-          console.log('ACTIVE CATEGORY: ', activeCategory);
-          return { ...state, activeCategory };
-        default:
-          return state;
-      }
+        let active = payload.name;
+            return { cat:state.categories,act:active  };
+    // case 'RESET':
+    //     return initialState;
+    default:
+        return state;
 };
 
-export const changeActiveCategory = (name) => {
+ }
+  export const changeCategory = (name) => {
     return {
-      type: 'change',
-      payload: name,
-    };
+        type: 'change',
+        payload: name
+    }
   };
+
+export default categoryReducer;

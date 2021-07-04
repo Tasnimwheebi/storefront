@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeActiveCategory } from '../../store/products';
+import { changeCategory } from '../../store/categories';
 const Categories = (props) => {
-    let categoriesToMap = props.category.categories;
+    console.log(props);
+    let categoriesToMap = props.categories;
   return (
     <div>
-        <h2>My Categories component.</h2>
         <ul>
           {categoriesToMap.map((category) => {
             return (
-              <button key={category.displayName} onClick={() => props.changeActiveCategory(category)}>
+              <button key={category.displayName} onClick={() => props.changeCategory(category)}>
                 {category.displayName}
               </button>
             );
@@ -20,8 +20,8 @@ const Categories = (props) => {
 };
 const mapStateToProps = (state) => {
     return {
-      category: state.categories, 
+      categories: state.categoryReducer.categories, 
     };
   };
-  const mapDispatchToProps = { changeActiveCategory };
+  const mapDispatchToProps = { changeCategory };
   export default connect(mapStateToProps, mapDispatchToProps)(Categories);
