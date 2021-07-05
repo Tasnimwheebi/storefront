@@ -3,22 +3,34 @@ const initialState = {
         {
             name:'electronics',
             displayName:'ELECTRONIC',
-            description:'tv'
+            description:'Category Description Goes Here'
         },
         {
             name:'food',
             displayName:'FOOD',
-            description:'rice'
+            description:'Category Description Goes Here'
         },
+        {
+            name:'phones',
+            displayName:'PHONE',
+            description:'Category Description Goes Here'
+        },
+        {
+            name:'shirts',
+            displayName:'SHIRTS',
+            description:'Category Description Goes Here'
+        },
+
     ],
-    active:'electronics'
+   
 }
  const categoryReducer=  (state = initialState, action) => {
     let { type, payload } = action;
     switch (type) {
-        case 'change':
-        let active = payload.name;
-            return { cat:state.categories,act:active  };
+        case 'DISPLAY':
+        let active = payload;
+        let description=state.categories[0].description;
+            return { categories:state.categories,act:active , description:description };
     // case 'RESET':
     //     return initialState;
     default:
@@ -26,11 +38,11 @@ const initialState = {
 };
 
  }
-  export const changeCategory = (name) => {
-    return {
-        type: 'change',
-        payload: name
-    }
-  };
+//   export const changeCategory = (name) => {
+//     return {
+//         type: 'ACTIVE',
+//         payload: name
+//     }
+//   };
 
 export default categoryReducer;

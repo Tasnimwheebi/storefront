@@ -7,13 +7,16 @@ import { BrowserRouter as Router} from 'react-router-dom';
 import Cart  from './components/cart/simplecart';
 import Footer  from './components/footer/footer';
 import Categories from './components/storefront/categories';
-// import Product from './components/storefront/products'
+import Product from './components/storefront/products'
+import ActiveCategory from './components/storefront/current-category';
+import SimpleCart from './components/cart/simplecart'
 function App() {
   return (
     <Router>
       <React.Fragment>
     <div className="App">
         <Header className="App-header"/>
+        <SimpleCart />
         <Switch>
           <Route exact path = "/">
           </Route>
@@ -21,7 +24,8 @@ function App() {
         </Switch>
         <h1>Browse our Categories</h1>
         <Categories/>
-        {/* <Product/> */}
+        <ActiveCategory />
+        <Product/>
 
       <Footer/>
     </div>
