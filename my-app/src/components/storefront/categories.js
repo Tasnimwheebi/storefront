@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeCategory } from '../../store/categories';
+import { changeActiveCategory } from '../../store/products';
+import { Button } from '@material-ui/core';
 const Categories = (props) => {
-    console.log(props);
-    let categoriesToMap = props.categories;
+    console.log(props.categories);
+   
   return (
     <div>
         <ul>
-          {categoriesToMap.map((category) => {
+          {props.categories.map((category) => {
             return (
-              <button key={category.displayName} onClick={() => props.changeCategory(category)}>
+              <Button color="primary" key={category.displayName} onClick={() => props.changeActiveCategory(category.name)}>
                 {category.displayName}
-              </button>
+              </Button>
             );
           })}
         </ul>
+        
       </div>
   );
 };
@@ -23,5 +25,5 @@ const mapStateToProps = (state) => {
       categories: state.categoryReducer.categories, 
     };
   };
-  const mapDispatchToProps = { changeCategory };
+  const mapDispatchToProps = { changeActiveCategory };
   export default connect(mapStateToProps, mapDispatchToProps)(Categories);

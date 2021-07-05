@@ -1,28 +1,55 @@
 import React from 'react';
-
-const Cart = (props)=>{
-    return(
-        <form>
-            <h3> Order Summary </h3> <br></br>
-            <label> Total </label>
-             <br></br>
-             <h3> Billing Adress</h3> <br></br>
-             <input type="text" placeholder= "full name"></input>
-             <input type="text" placeholder= "Adress"></input> <br></br>
-             <input type="text" placeholder= "City"></input>
-             <input type="text" placeholder= "State"></input> <br></br>
-             <input type="text" placeholder= "Zip"></input> <br></br>
-             <h3> Payment Details</h3> <br></br>
-             <input type="number" placeholder="Credit Card #"></input>
-            
-            <input type="date" placeholder="Expiration"></input><br></br>
-            <input type="" placeholder="CVV"></input>
-            <br></br>
+import { connect } from 'react-redux';
+import { remove } from '../../store/cart';
+import { Button } from '@material-ui/core';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import IconButton from '@material-ui/core/IconButton';
+// import Icon from '@material-ui/core/Icon';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+  }));
+const Cart = (props) => {
+    const classes = useStyles();
+    let cartProducts = props.arrayOfProducts;
 
 
-             <button type="submit">PLACE YOUR ORDER</button>
-        </form>
+    return (
+
+        <>
+            <h1>Tasnim products</h1>
+            <Button variant="outlined" color="primary"><span>Cart ({props.total})</span></Button>
+            <ul>
+                {
+                    cartProducts.length ? cartProducts.map((items) => {
+                        return (
+                            <li >
+                                <span>{items}</span>
+                                <Button onClick={() => props.remove(items)}
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        // startIcon={<DeleteIcon />}
+        >
+        Delete
+      </Button>
+
+                            </li>
+                        );
+                    }) : ''
+                }
+            </ul>
+        </>
     )
 }
-
-export default Cart;
+const mapStateToProps = (state) => {
+    return {
+        total: state.reducerOfCart.totalProducts,
+        arrayOfProducts: state.reducerOfCart.cartArray,
+    }
+}
+// const mapDispatchToProps = {deleteFromCart:remove};
+const mapDispatchToProps = { remove };
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
