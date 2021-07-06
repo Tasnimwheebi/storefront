@@ -41,26 +41,24 @@ const initialState = {
     ],
     displayProducts: [],
   };
-  const productReducer = (state = initialState,action) => {
-      let {type,payload} = action;
-      switch (type) {
-        case 'DISPLAY':
-
-          let targetCategory = payload;
-          let displayProducts = state.products.filter((product) => {
-            return product.category === targetCategory;
-          });
-          return { ...state, displayProducts };
-        default:
-          return state;
-      }
-  }
   
-  export const changeActiveCategory = (name) => {
-    return {
-      type: 'DISPLAY',
-      payload: name,
-    };
-  };
+  
+  const productReducer = (state = initialState,action) => {
+    let {type,payload} = action;
+    switch (type) {
+      case 'GET':
+
+        let targetCategory = payload.results;
+        console.log(targetCategory);
+        // console.log('targetCategory',targetCategory[0]);
+    // console.log('payload',payload);
+    // let List= targetCategory.filter(item=> item.category===payload.category);
+            return {...state, data : [...state.displayProducts,...targetCategory]}; 
+     ;
+      default:
+        return state;
+    }
+}
+  
 
   export default productReducer;
