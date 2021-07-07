@@ -11,7 +11,7 @@ const reducerOfCart = (state = initialState,action) => {
             cartArray.push(payload.name);
             return{...state,cartArray,totalProducts:cartArray.length};
         case 'DELETE':
-        cartArray = cartArray.filter((item) =>item !== payload && item);
+        cartArray = cartArray.filter((item) =>item !== payload);
         return {...state,cartArray,totalProducts:cartArray.length};
         default:
             return state;

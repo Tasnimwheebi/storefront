@@ -1,48 +1,27 @@
+import superagent from 'superagent';
 const initialState = {
-    categories:[
-        {
-            name:'electronics',
-            displayName:'ELECTRONIC',
-            description:'Category Description Goes Here'
-        },
-        {
-            name:'food',
-            displayName:'FOOD',
-            description:'Category Description Goes Here'
-        },
-        {
-            name:'phones',
-            displayName:'PHONE',
-            description:'Category Description Goes Here'
-        },
-        {
-            name:'shirts',
-            displayName:'SHIRTS',
-            description:'Category Description Goes Here'
-        },
-
-    ],
+    categories:[],
    
 }
  const categoryReducer=  (state = initialState, action) => {
     let { type, payload } = action;
     switch (type) {
-        case 'DISPLAY':
-        let active = payload;
-        let description=state.categories[0].description;
-            return { categories:state.categories,act:active , description:description };
-    // case 'RESET':
-    //     return initialState;
+        case 'GET':
+            return { categories:payload.results };
     default:
         return state;
 };
-
  }
-//   export const changeCategory = (name) => {
-//     return {
-//         type: 'ACTIVE',
-//         payload: name
-//     }
-//   };
-
+ export const getRemoteData = (name) => (dispatch, state) => {
+ const api = `https://api-js401.herokuapp.com/api/v1/categories`;
+    return superagent.get(api).then(res => {
+        dispatch(getAction(res.body));  
+    });
+}
+export const getAction = payload => {
+    return {
+        type: 'GET',
+        payload,
+    }
+}
 export default categoryReducer;
