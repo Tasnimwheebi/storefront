@@ -22,7 +22,7 @@ function App() {
           <Route exact path = "/">
           </Route>
           <Route exact path = "/cart" component = {Cart}></Route>
-          <Route exact path='/detail' component={Details}></Route>
+          <Route exact path='/detail/:id' component={Details}></Route>
         </Switch>
         <h1>Browse our Categories</h1>
         <Categories/>

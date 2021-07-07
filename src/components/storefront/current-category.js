@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 const CurrentCat = (props) =>{
-    console.log('props ***********',props);
+    // console.log('props ***********',props);
         return (
             <>
             <h3>{props.categoryReducer.act}</h3>
