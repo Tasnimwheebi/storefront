@@ -35,22 +35,22 @@ const Products = (props) => {
                 <strong> {item.id} {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
+
                 <Button variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
         
         <Button component={Link} to='/detail' onClick={()=> {dispatch(getData(item.id))}} variant="contained"
         color="primary" size="large" className={classes.button} >View Details </Button>
+
                 </li>
               </ul>
             </div>
         );
       })
-    }        
-                {/* <Button variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-         onClick={() => props.add(product)} key={product.price} >Add To Cart</Button> */}
+    }     
+    
+    {/* onClick={() => props.add(product)} key={product.price}    */}
+    
     </div>
   );
       }
