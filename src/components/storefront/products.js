@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
 import { getData } from '../../store/products';
 import { useSelector } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
+import Details from '../products/details';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -21,6 +23,7 @@ const Products = (props) => {
       return { productReducer: state.productReducer }
     });
     let dataApi = state.productReducer.products;
+    console.log('data from api', dataApi);
  if(dataApi){ return (
     <div>      
         {
@@ -29,11 +32,16 @@ const Products = (props) => {
             <div>
               <ul>
                 <li>  
-                <strong> {item.name} &nbsp;  </strong>
+                <strong> {item.id} {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
-                {/* <img src= {item.description} alt={item.name}/> */}
-                <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button>
+
+                <Button variant="contained"
+        color="primary" size="large" className={classes.button} >Add To Cart</Button>
+        
+        <Button component={Link} to='/detail' onClick={()=> {dispatch(getData(item.id))}} variant="contained"
+        color="primary" size="large" className={classes.button} >View Details </Button>
+
                 </li>
               </ul>
             </div>
