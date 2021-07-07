@@ -5,7 +5,7 @@ const Header = ()=>{
     <header>
         <h1>
       <Link to="/">OUR STORE </Link> 
-      
+      {/* <Link to="/cart">Cart </Link>  */}
         </h1>
         <nav>
            
