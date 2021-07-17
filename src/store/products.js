@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+
 const initialState = {
     products: [],
     specificProduct :[],
@@ -12,8 +13,8 @@ const initialState = {
             return {products}; 
      ;
      case 'SPECIFIC':
-       console.log('//////////////////////',payload);
-     return payload;
+       console.log('//////////////////////',payload.results);
+     return payload.results;
       default:
         return state;
     }
@@ -25,9 +26,11 @@ export const getData = (name) => (dispatch, state) => {
      });
  }
 
- export const getDetails = (name,_id) => (dispatch, state) => {
-  const api = `https://api-js401.herokuapp.com/api/v1/products?category=${name}$_id=${_id}`;
+ export const getDetails = (_id) => (dispatch, state) => {
+   console.log('_id ********',_id);
+  const api = `https://api-js401.herokuapp.com/api/v1/products?_id=${_id}`;
      return superagent.get(api).then(res => {
+
          dispatch(producDetails(res.body));
      });
  }

@@ -4,7 +4,7 @@ import React from 'react';
 import Header from './components/header/header';
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router} from 'react-router-dom';
-import Cart  from './components/cart/simplecart';
+import CheckoutCart  from './components/cart/checkout';
 import Footer  from './components/footer/footer';
 import Categories from './components/storefront/categories';
 import Product from './components/storefront/products'
@@ -20,14 +20,20 @@ function App() {
         <SimpleCart />
         <Switch>
           <Route exact path = "/">
-          </Route>
-          <Route exact path = "/cart" component = {Cart}></Route>
-          <Route exact path='/detail/:id' component={Details}></Route>
-        </Switch>
-        <h1>Browse our Categories</h1>
-        <Categories/>
+          <Categories/>
+
         <ActiveCategory />
-        <Product/>
+         <Product/>
+          </Route>
+          <Route exact path = "/cart" component = {CheckoutCart}>
+            <CheckoutCart/>
+          </Route>
+         
+          <Route exact path="/detail/:id" > <Details/></Route>
+        </Switch>
+        
+        
+       
 
       <Footer/>
     </div>

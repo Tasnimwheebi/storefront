@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cart = (props)=>{
+const CheckoutCart = (props)=>{
     return(
         <form>
             <h3> Order Summary </h3> <br></br>
@@ -25,4 +25,4 @@ const Cart = (props)=>{
     )
 }
 
-export default Cart;
+export default CheckoutCart;

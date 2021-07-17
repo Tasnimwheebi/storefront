@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
 import { getData , getDetails} from '../../store/products';
 import { useSelector } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 // import Details from '../products/details';
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -38,9 +39,9 @@ const Products = (props) => {
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
                 <Button variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
-        
-        <Button component={Link} to={`/detail/${item._id}`} onClick={()=> {dispatch(getDetails(item.name,item._id))}} variant="contained"
-        color="primary" size="large" className={classes.button} >View Details </Button>
+        <Link  to={`/detail/${item._id}`}>
+        <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
+        color="primary" size="large" className={classes.button} >View Details </Button></Link>
                 </li>
               </ul>
             </div>
