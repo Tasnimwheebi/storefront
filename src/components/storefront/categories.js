@@ -13,6 +13,7 @@ const Categories = (props) => {
   },[])
   return (
     <div>
+       <h1>Browse our Categories</h1>
         <ul>
           {props.categories.map((category) => {
             return (

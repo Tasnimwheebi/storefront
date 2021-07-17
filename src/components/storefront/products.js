@@ -4,8 +4,11 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
-import { getData } from '../../store/products';
+import { getData , getDetails} from '../../store/products';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// import Details from '../products/details';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -16,11 +19,13 @@ const Products = (props) => {
   useEffect(()=>{
   dispatch(getData(''))
 },[])
+
   const classes = useStyles();
     const state = useSelector((state) => {
       return { productReducer: state.productReducer }
     });
     let dataApi = state.productReducer.products;
+    // console.log('data from api', dataApi);
  if(dataApi){ return (
     <div>      
         {
@@ -29,11 +34,19 @@ const Products = (props) => {
             <div>
               <ul>
                 <li>  
-                <strong> {item.name} &nbsp;  </strong>
+                <strong> {item._id}  {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
+<<<<<<< HEAD
+                <Button variant="contained"
+        color="primary" size="large" className={classes.button} >Add To Cart</Button>
+        <Link  to={`/detail/${item._id}`}>
+        <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
+        color="primary" size="large" className={classes.button} >View Details </Button></Link>
+=======
                 {/* <img src= {item.description} alt={item.name}/> */}
                 <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button>
+>>>>>>> ee9a5f6953d38776d844d5c3e5d9b1c86c938700
                 </li>
               </ul>
             </div>
