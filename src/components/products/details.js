@@ -1,7 +1,7 @@
-import React from 'react';
-// import {  getDetails} from "../../store/products";
+import React , {useEffect}from 'react';
+import {  getDetails} from "../../store/products";
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { render } from '@testing-library/react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,32 +14,34 @@ const Details  = (props)=>{
     },
   }));
   const classes = useStyles();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(()=>{
-    //     dispatch(getDetails(''))
-    //   },[])
-    const state = useSelector((state) => {
+    useEffect(()=>{
+        dispatch(getDetails(''))
+      },[])
+    const  state = useSelector((state) => {
        
         return { productReducer: state.productReducer }
     });
-    console.log('tasniiiiiiiiiim ', state);
-    console.log('tasniiiiiiiiiim22222222 ', state.productReducer)
+    // console.log('tasniiiiiiiiiim ', state);
+    // console.log('tasniiiiiiiiiim22222222 ', state.productReducer)
   const itemDetails = state.productReducer
 
+  
 //   return (
    
 //      <div>
 //      <h1>{itemDetails.name}</h1>
 //      </div>
 //  );
+console.log('itemdetails **************',itemDetails);
 if(itemDetails){ return (
   <div> 
             <ul>
               <li>  
-              <strong>  {itemDetails[0].name} &nbsp;  </strong>
-              <span> &nbsp; Price : {itemDetails[0].price}  <strong>$</strong>  </span>
-              <span> &nbsp;  &nbsp; Category : {itemDetails[0].category}  </span>
+              <strong>  {itemDetails.name} &nbsp;  </strong>
+              <span> &nbsp; Price : {itemDetails.price}  <strong>$</strong>  </span>
+              <span> &nbsp;  &nbsp; Category : {itemDetails.category}  </span>
               <Button variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
              
@@ -48,9 +50,9 @@ if(itemDetails){ return (
   </div>
 );
     }
-    else {
-    return  '';
-    }
+    // else {
+    // return  '';
+    // }
 
 }
 export default Details;

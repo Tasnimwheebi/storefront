@@ -43,9 +43,10 @@ const Products = (props) => {
         <Link  to={`/detail/${item._id}`}>
         <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
         color="primary" size="large" className={classes.button} >View Details </Button></Link>
+        
 
                 {/* <img src= {item.description} alt={item.name}/> */}
-                <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button>
+                {/* <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button> */}
 
                 </li>
               </ul>
