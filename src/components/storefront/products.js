@@ -37,22 +37,25 @@ const Products = (props) => {
                 <strong> {item._id}  {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
+<<<<<<< HEAD
                 <Button variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
         <Link  to={`/detail/${item._id}`}>
         <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
         color="primary" size="large" className={classes.button} >View Details </Button></Link>
+=======
+                {/* <img src= {item.description} alt={item.name}/> */}
+                <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button>
+>>>>>>> ee9a5f6953d38776d844d5c3e5d9b1c86c938700
                 </li>
               </ul>
             </div>
         );
       })
-    }        
-                {/* <Button variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-         onClick={() => props.add(product)} key={product.price} >Add To Cart</Button> */}
+    }     
+    
+    {/* onClick={() => props.add(product)} key={product.price}    */}
+    
     </div>
   );
       }
