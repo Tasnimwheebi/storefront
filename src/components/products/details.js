@@ -38,9 +38,9 @@ const Details  = (props)=>{
 //      </div>
 //  );
 // console.log('itemdetails **************',itemDetails);
- return (
+if(props.specificP.specificProduct){ return (
   <div>  
-    <h1> Hello </h1>
+    {/* <h1> Hello </h1> */}
 
     {props.specificP.specificProduct.map((item ,idx) => 
 
@@ -63,11 +63,14 @@ const Details  = (props)=>{
   }             
   </div>
 );
+}
     
           
-    // else {
-    // return  '';
-    // }
+    else {
+    return  (
+      <h1>tasnim</h1>
+    )
+    }
 
 }
 const mapStateToProps = (state) => {
