@@ -35,7 +35,7 @@ const Products = (props) => {
           return (
             <div>
               <ul>
-                <li>  
+                <li key= {idx}>  
                 <strong> {item._id}  {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
@@ -43,7 +43,7 @@ const Products = (props) => {
                 <Button onClick={() => {dispatch(add(item))}} variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
         <Link  to={`/detail/${item._id}`}>
-          
+
         <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
         color="primary" size="large" className={classes.button} >View Details </Button></Link>
         

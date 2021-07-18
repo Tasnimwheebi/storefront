@@ -42,14 +42,14 @@ const Details  = (props)=>{
   <div>  
     <h1> Hello </h1>
 
-    {props.specificP.specificProduct.map(item => 
+    {props.specificP.specificProduct.map((item ,idx) => 
 
      { return(
 <ul>
-              <li>  
+              <li key= {idx} >  
               <strong>  {item.name} &nbsp;  </strong>
               <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
-              
+
               <span> &nbsp;  &nbsp; Category : {item.category}  </span>
               <Button onClick={() => props.add(item)} variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
