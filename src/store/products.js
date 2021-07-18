@@ -2,14 +2,21 @@ import superagent from 'superagent';
 
 const initialState = {
     products: [],
-    specificProduct :[],
+    specificProduct :[{category: "electronics",
+    inStock: 1824,
+    name: "TV",
+    price: 698}],
   };
   const productReducer = (state = initialState,action) => {
     let {type,payload} = action;
     switch (type) {
       case 'SPECIFIC':
-        //  console.log('//////////////////////',payload.results);
-       return payload.results;
+         console.log('//////////////////////',payload.results);
+         console.log('state /*******',state);
+      //  return payload.resultss;
+      let newState = {...state,specificProduct:payload.results}
+      console.log('NeewState ', newState);
+      return  newState;
       case 'DISPLAY':
         let products = payload.results;
         
