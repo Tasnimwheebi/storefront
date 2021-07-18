@@ -3,6 +3,8 @@ import {  getDetails} from "../../store/products";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 // import { render } from '@testing-library/react';
+import { connect } from 'react-redux';
+import {add} from '../../store/cart';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -39,10 +41,10 @@ if(itemDetails){ return (
   <div> 
             <ul>
               <li>  
-              <strong>  {itemDetails.name} &nbsp;  </strong>
-              <span> &nbsp; Price : {itemDetails.price}  <strong>$</strong>  </span>
-              <span> &nbsp;  &nbsp; Category : {itemDetails.category}  </span>
-              <Button variant="contained"
+              <strong>  {itemDetails[0].name} &nbsp;  </strong>
+              <span> &nbsp; Price : {itemDetails[0].price}  <strong>$</strong>  </span>
+              <span> &nbsp;  &nbsp; Category : {itemDetails[0].category}  </span>
+              <Button onClick={() => {dispatch(add(itemDetails))}} variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
              
               </li>
@@ -55,4 +57,11 @@ if(itemDetails){ return (
     // }
 
 }
-export default Details;
+const mapStateToProps = (state) => {
+  return {
+    products: state.productReducer.data,
+    displayProducts: state.productReducer,
+  };
+};
+const mapDispatchToProps = {add}
+export default connect(mapStateToProps)(Details);
