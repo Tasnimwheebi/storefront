@@ -1,5 +1,5 @@
 import React from 'react';
-// import {add} from '../../store/cart';
+import {add} from '../../store/cart';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect } from 'react';
@@ -7,6 +7,8 @@ import { useDispatch} from 'react-redux';
 import { getData , getDetails} from '../../store/products';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 // import Details from '../products/details';
 const useStyles = makeStyles((theme) => ({
@@ -33,19 +35,21 @@ const Products = (props) => {
           return (
             <div>
               <ul>
-                <li>  
+                <li key= {idx}>  
                 <strong> {item._id}  {item.name} &nbsp;  </strong>
                 <span> &nbsp; Price : {item.price}  <strong>$</strong>  </span>
                 <span> &nbsp;  &nbsp; Category : {item.category}  </span>
 
-                <Button variant="contained"
+                <Button onClick={() => {dispatch(add(item))}} variant="contained"
         color="primary" size="large" className={classes.button} >Add To Cart</Button>
         <Link  to={`/detail/${item._id}`}>
+
         <Button  onClick={()=> {dispatch(getDetails(item._id))}} variant="contained"
         color="primary" size="large" className={classes.button} >View Details </Button></Link>
+        
 
                 {/* <img src= {item.description} alt={item.name}/> */}
-                <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button>
+                {/* <Button variant="contained"  color="primary"  size="large" className={classes.button}>Add To Cart</Button> */}
 
                 </li>
               </ul>
@@ -64,13 +68,13 @@ const Products = (props) => {
       }
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     // products: state.productReducer.data,
-//     // displayProducts: state.productReducer,
-//   };
-// };
-// const mapDispatchToProps = {add}
+const mapStateToProps = (state) => {
+  return {
+    products: state.productReducer.data,
+    displayProducts: state.productReducer,
+  };
+};
+const mapDispatchToProps = {add}
 
 
-export default Products;
+export default connect(mapStateToProps)(Products);
